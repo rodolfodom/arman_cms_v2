@@ -17,7 +17,7 @@ export default {
       },
       Component: async () => {
         const component = await import('./pages/App/index.js');
-
+        
         return component;
       },
       permissions: [
