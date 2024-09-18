@@ -1,3 +1,6 @@
 'use strict';
 
-module.exports = {};
+module.exports = {
+    "speaker": require('./speaker'),
+    "event": require('./event'),
+};
