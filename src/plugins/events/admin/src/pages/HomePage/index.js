@@ -4,16 +4,36 @@
  *
  */
 
-import React from 'react';
+import React from "react";
 // import PropTypes from 'prop-types';
-import pluginId from '../../pluginId';
+import pluginId from "../../pluginId";
+import {
+  Main,
+  HeaderLayout,
+  Combobox,
+  ComboboxOption,
+  ContentLayout,
+} from "@strapi/design-system";
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>{pluginId}&apos;s HomePage</h1>
-      <p>Happy coding</p>
-    </div>
+    <Main>
+      <HeaderLayout
+        title="Pasar lista"
+        subtitle="Confirme la asitencia de los asistentes"
+      />
+      <ContentLayout>
+        <Combobox
+          label="Evento"
+          hint="Seleccione un evento"
+          placeholder="Nombre de mi conferencia"
+        >
+          <ComboboxOption value="sample1">Sample1</ComboboxOption>
+          <ComboboxOption value="sample2">Sample2</ComboboxOption>
+          <ComboboxOption value="sample3">Sample3</ComboboxOption>
+        </Combobox>
+      </ContentLayout>
+    </Main>
   );
 };
 
