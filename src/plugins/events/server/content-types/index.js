@@ -1,6 +1,9 @@
 'use strict';
 
+const speaker = require('./speaker');
+const event = require('./event');
+
 module.exports = {
-    "speaker": require('./speaker'),
-    "event": require('./event'),
+    speaker,
+    event
 };
