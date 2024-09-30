@@ -6,7 +6,7 @@ module.exports = {
     routes: [
       {
         method: "GET",
-        path: "/count",
+        path: "/names",
         handler: "event.count",
         config: {
           policies: [],
