@@ -4,9 +4,11 @@
  *
  */
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 // import PropTypes from 'prop-types';
 import pluginId from "../../pluginId";
+import QRScanner from "../../components/QRScanner";
+
 import {
   Main,
   HeaderLayout,
@@ -53,6 +55,7 @@ const HomePage = () => {
             ))
           )}
         </Combobox>
+        <QRScanner />
       </ContentLayout>
     </Main>
   );
