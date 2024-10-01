@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import QrScanner from "qr-scanner";
+// @ts-ignore
 import QrFrame from "./assets/qr-frame.svg";
 import "./QRStyles.css";
 
@@ -78,21 +79,6 @@ const QRScanner = () => {
           className="qr-frame"
         />
       </div>
-
-      {/* Show Data Result if scan is success */}
-      {scannedResult && (
-        <p
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 99999,
-            color: "white",
-          }}
-        >
-          Scanned Result: {scannedResult}
-        </p>
-      )}
     </div>
   );
 };
