@@ -4,32 +4,22 @@ import QrScanner from "qr-scanner";
 import QrFrame from "./assets/qr-frame.svg";
 import "./QRStyles.css";
 
-const QRScanner = () => {
+const QRScanner = ({onScanSuccess, scannerRef}) => {
   // QR States
-  const scanner = useRef(null);
   const videoEl = useRef(null);
   const qrBoxEl = useRef(null);
   const [qrOn, setQrOn] = useState(true);
-  const [scannedResult, setScannedResult] = useState("");
-
-  const onScanSuccess = (result) => {
-    // 🖨 Print the "result" to browser console.
-    console.log(result);
-    // ✅ Handle success.
-    // 😎 You can do whatever you want with the scanned result.
-    setScannedResult(result?.data);
-  };
 
   // Fail
   const onScanFail = (err) => {
     // 🖨 Print the "err" to browser console.
-    console.log(err);
+    //console.log(err);
   };
 
   useEffect(() => {
-    if (videoEl?.current && !scanner.current) {
+    if (videoEl?.current && !scannerRef.current) {
       // 👉 Instantiate the QR Scanner
-      scanner.current = new QrScanner(videoEl?.current, onScanSuccess, {
+      scannerRef.current = new QrScanner(videoEl?.current, onScanSuccess, {
         onDecodeError: onScanFail,
         // 📷 This is the camera facing mode. In mobile devices, "environment" means back camera and "user" means front camera.
         preferredCamera: "environment",
@@ -39,10 +29,14 @@ const QRScanner = () => {
         highlightCodeOutline: true,
         // 📦 A custom div which will pair with "highlightScanRegion" option above 👆. This gives us full control over our scan region.
         overlay: qrBoxEl?.current || undefined,
+
+        returnDetailedScanResult: true,
+
+        maxScansPerSecond: 5,
       });
 
       // 🚀 Start QR Scanner
-      scanner?.current
+      scannerRef?.current
         ?.start()
         .then(() => setQrOn(true))
         .catch((err) => {
@@ -54,7 +48,7 @@ const QRScanner = () => {
     // 🚨 This removes the QR Scanner from rendering and using camera when it is closed or removed from the UI.
     return () => {
       if (!videoEl?.current) {
-        scanner?.current?.stop();
+        scannerRef?.current?.stop();
       }
     };
   }, []);
@@ -62,7 +56,7 @@ const QRScanner = () => {
   useEffect(() => {
     if (!qrOn)
       alert(
-        "Camera is blocked or not accessible. Please allow camera in your browser permissions and Reload."
+        "La camara no esta disponible, por favor permita el acceso a la camara."
       );
   }, [qrOn]);
 
