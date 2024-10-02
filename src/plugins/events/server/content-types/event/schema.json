@@ -46,6 +46,12 @@
     },
     "Description": {
       "type": "text"
+    },
+    "Speakers":{
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::events.speaker",
+      "mappedBy": "Events"
     }
   }
 }

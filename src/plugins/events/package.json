@@ -13,7 +13,8 @@
     "@strapi/helper-plugin": "^4.6.0",
     "@strapi/icons": "^1.6.3",
     "prop-types": "^15.7.2",
-    "qr-scanner": "^1.4.2"
+    "qr-scanner": "^1.4.2",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "react": "^18.2.0",

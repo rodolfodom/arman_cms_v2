@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attendees",
+  "info": {
+    "singularName": "attendee",
+    "pluralName": "attendees",
+    "displayName": "Attendee"
+  },
+  "options": {
+    "draftAndPublish": true,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "User": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "required": true
+    },
+    "Event": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::events.event",
+      "required": true
+    },
+    "Atteded": {
+      "type": "boolean",
+      "required": true,
+      "defaultTo": false
+    },
+    "UID": {
+      "type": "uid",
+      "required": true,
+      "configurable": false
+    }
+  }
+}

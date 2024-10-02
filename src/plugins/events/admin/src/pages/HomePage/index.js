@@ -29,14 +29,11 @@ const HomePage = () => {
 
   useEffect(() => {
     if(scannerPaused || !scannedResult) {
-      console.log("Scanner paused");
       return;
     }
-
     if(scannedResult?.data === "") {
       return;
     }
-
     if(selectedEvent === "") {
       setMessage("Por favor seleccione un evento antes de escanear el código QR.");
       setScannerPaused(true);
@@ -47,7 +44,6 @@ const HomePage = () => {
       setScannerPaused(true);
       setOpen(true);
     }
-
   }, [scannedResult]);
 
   useEffect(() => {
@@ -94,7 +90,6 @@ const HomePage = () => {
         <Confirmation
           setOpen={setOpen}
           onClose={() => {
-            console.log("Se ha cerrado la confirmación");
             setScannerPaused(false);
             setOpen(false);
           }}

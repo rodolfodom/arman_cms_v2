@@ -606,6 +606,11 @@ export interface PluginEventsSpeaker extends Schema.CollectionType {
     Lastname: Attribute.String;
     Company: Attribute.String;
     Position: Attribute.String;
+    Events: Attribute.Relation<
+      'plugin::events.speaker',
+      'manyToMany',
+      'plugin::events.event'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -645,6 +650,11 @@ export interface PluginEventsEvent extends Schema.CollectionType {
     Type: Attribute.Enumeration<['Online', 'Presential', 'Hybrid']>;
     MeetingURL: Attribute.String;
     Description: Attribute.Text;
+    Speakers: Attribute.Relation<
+      'plugin::events.event',
+      'manyToMany',
+      'plugin::events.speaker'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -656,6 +666,58 @@ export interface PluginEventsEvent extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::events.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginEventsAttendee extends Schema.CollectionType {
+  collectionName: 'attendees';
+  info: {
+    singularName: 'attendee';
+    pluralName: 'attendees';
+    displayName: 'Attendee';
+  };
+  options: {
+    draftAndPublish: true;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    User: Attribute.Relation<
+      'plugin::events.attendee',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    > &
+      Attribute.Required;
+    Event: Attribute.Relation<
+      'plugin::events.attendee',
+      'oneToOne',
+      'plugin::events.event'
+    > &
+      Attribute.Required;
+    Atteded: Attribute.Boolean & Attribute.Required;
+    UID: Attribute.UID & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::events.attendee',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::events.attendee',
       'oneToOne',
       'admin::user'
     > &
@@ -877,6 +939,7 @@ declare module '@strapi/types' {
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::events.speaker': PluginEventsSpeaker;
       'plugin::events.event': PluginEventsEvent;
+      'plugin::events.attendee': PluginEventsAttendee;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;

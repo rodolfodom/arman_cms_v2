@@ -30,6 +30,12 @@
     },
     "Position": {
       "type": "string"
+    },
+    "Events": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::events.event",
+      "inversedBy": "Speakers"
     }
   }
 }
