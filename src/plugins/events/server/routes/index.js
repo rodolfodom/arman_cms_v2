@@ -1,4 +1,6 @@
 const event = require("./event");
+const attendee = require("./attendee");
+const speaker = require("./speaker");
 
 module.exports = {
   "admin-routes": {
@@ -15,4 +17,7 @@ module.exports = {
       },
     ],
   },
+  event,
+  speaker,
+  attendee
 };
