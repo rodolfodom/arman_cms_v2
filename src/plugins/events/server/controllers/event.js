@@ -16,7 +16,15 @@ module.exports = createCoreController("plugin::events.event", ({ strapi }) => ({
   async getByStatus(ctx) {
     try {
       const events = await strapi.entityService.findMany(
-        "plugin::events.event"
+        "plugin::events.event",
+        {
+          populate: {
+            Cover: {
+              fields: ['formats']
+            },
+            Speakers: true,
+          },
+        }
       );
 
       const eventsByStatus = { commingSoon: [], open: [], closed: [] };
