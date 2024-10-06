@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "speakers",
+  "info": {
+    "singularName": "speaker",
+    "pluralName": "speakers",
+    "displayName": "Speaker"
+  },
+  "options": {
+    "draftAndPublish": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Lastname": {
+      "type": "string"
+    },
+    "Company": {
+      "type": "string"
+    },
+    "Position": {
+      "type": "string"
+    },
+    "Events": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::events.event",
+      "inversedBy": "Speakers"
+    }
+  }
+}

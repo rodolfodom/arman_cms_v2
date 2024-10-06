@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Location": {
+      "type": "string"
+    },
+    "RegistrationStartingDate": {
+      "type": "datetime"
+    },
+    "RegistrationEndingDate": {
+      "type": "datetime"
+    },
+    "Date": {
+      "type": "datetime"
+    },
+    "Capacity": {
+      "type": "integer"
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Online",
+        "Presential",
+        "Hybrid"
+      ]
+    },
+    "MeetingURL": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Speakers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::events.speaker",
+      "mappedBy": "Events"
+    },
+    "Cover": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

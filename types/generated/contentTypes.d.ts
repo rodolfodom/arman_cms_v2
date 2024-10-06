@@ -635,10 +635,10 @@ export interface PluginEventsEvent extends Schema.CollectionType {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
-    comment: '';
   };
   attributes: {
     Name: Attribute.String;
@@ -655,6 +655,7 @@ export interface PluginEventsEvent extends Schema.CollectionType {
       'manyToMany',
       'plugin::events.speaker'
     >;
+    Cover: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
