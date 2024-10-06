@@ -3,21 +3,10 @@ const attendee = require("./attendee");
 const speaker = require("./speaker");
 
 module.exports = {
-  "admin-routes": {
-    type: "admin",
-    routes: [
-      {
-        method: "GET",
-        path: "/names",
-        handler: "event.count",
-        config: {
-          policies: [],
-          auth: false,
-        },
-      },
-    ],
-  },
-  event,
+  "event-admin": event.admin,
+  // @ts-ignore
+  "event": event.coreRouter,
+  "event-custom": event.custom,
   speaker,
-  attendee
+  attendee,
 };
