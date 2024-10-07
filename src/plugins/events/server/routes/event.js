@@ -34,6 +34,14 @@ module.exports = {
           policies: [],
         },
       },
+      {
+        method: "GET",
+        path: "/reserved",
+        handler: "event.getReservedEvents",
+        config: {
+          policies: [],
+        },
+      },
     ],
   },
 };

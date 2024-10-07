@@ -20,7 +20,7 @@ module.exports = createCoreController("plugin::events.event", ({ strapi }) => ({
         {
           populate: {
             Cover: {
-              fields: ['formats']
+              fields: ["formats"],
             },
             Speakers: true,
           },
@@ -62,4 +62,51 @@ module.exports = createCoreController("plugin::events.event", ({ strapi }) => ({
       };
     }
   },
+  async getReservedEvents(ctx){
+    const reservations = await strapi.entityService.findMany(
+      "plugin::events.attendee",
+      {
+        filters: {
+          User: ctx.state.user.id,
+        },
+        fields: ["id", "UID", "Atteded"],
+        populate: {
+          Event: {
+            fields: ["Capacity", "Name", "id", "Date", "Description", "Location", "Type"],
+            populate:{
+              Cover: {
+                fields: ["formats"],
+              },
+              Speakers:{
+                fields: ["*"],
+              }
+            }
+          },
+        },
+      }
+    );
+
+    const formattedData = {
+      attended: [],
+      notAttended: [],
+    }
+
+    reservations.forEach((reservation)=>{
+      if(reservation.Atteded){
+        formattedData.attended = [...formattedData.attended, reservation.Event]
+      }else{
+        formattedData.notAttended = [...formattedData.notAttended, reservation.Event]
+      }
+    })
+
+    ctx.response.status = 200;
+    ctx.response.body = {
+      data: formattedData,
+      status: "success",
+      userMessage: "Las reservas se han recuperado correctamente.",
+      meta: {
+        timestamp: new Date(),
+      },
+    };
+  }
 }));
