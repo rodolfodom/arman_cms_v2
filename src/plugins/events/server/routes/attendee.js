@@ -1,9 +1,25 @@
 'use strict';
 
+
 /**
  *  router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('plugin::events.attendee');
+module.exports = {
+  coreRouter: createCoreRouter("plugin::events.attendee"),
+  custom: {
+    type: "content-api",
+    routes: [
+      {
+        method: "POST",
+        path: "/reserve",
+        handler: "attendee.reserveEvent",
+        config:{
+          policies: [],
+        }
+      }
+    ],
+  },
+};

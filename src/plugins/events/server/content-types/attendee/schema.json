@@ -7,7 +7,7 @@
     "displayName": "Attendee"
   },
   "options": {
-    "draftAndPublish": true,
+    "draftAndPublish": false,
     "comment": ""
   },
   "pluginOptions": {
@@ -38,8 +38,7 @@
     },
     "UID": {
       "type": "uid",
-      "required": true,
-      "configurable": false
+      "required": true
     }
   }
 }

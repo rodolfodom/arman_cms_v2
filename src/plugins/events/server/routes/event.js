@@ -24,7 +24,7 @@ module.exports = {
   },
   coreRouter,
   custom: {
-    prefix: "/custom-api/events",
+    type: "content-api",
     routes: [
       {
         method: "GET",
@@ -32,7 +32,6 @@ module.exports = {
         handler: "event.getByStatus",
         config: {
           policies: [],
-          auth: false,
         },
       },
     ],

@@ -682,7 +682,7 @@ export interface PluginEventsAttendee extends Schema.CollectionType {
     displayName: 'Attendee';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
     comment: '';
   };
   pluginOptions: {
@@ -710,7 +710,6 @@ export interface PluginEventsAttendee extends Schema.CollectionType {
     UID: Attribute.UID & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'plugin::events.attendee',
       'oneToOne',
