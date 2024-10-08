@@ -56,7 +56,7 @@ module.exports = createCoreController(
         "plugin::events.attendee",
         {
           filters: {
-            Event: ctx.request.body.event,
+            Event: ctx.request.params.event,
             User: ctx.state.user.id,
           },
         }
@@ -82,6 +82,9 @@ module.exports = createCoreController(
           },
         };
       }
+    },
+    async callRoll(ctx) {
+      console.log("############ CALL-ROLL ############");
     }
   })
 );
