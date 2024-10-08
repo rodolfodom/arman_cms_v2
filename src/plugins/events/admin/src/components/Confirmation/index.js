@@ -1,16 +1,37 @@
-import { useEffect, useState } from "react";
-import { ModalLayout, ModalHeader, ModalBody, ModalFooter,Crumb } from "@strapi/design-system";
 
-export default function Confirmation({setOpen, onClose, message}) {
+import {
+  ModalLayout,
+  ModalHeader,
+  ModalBody,
+} from "@strapi/design-system";
+import "./styles.css";
 
-
+export default function Confirmation({ onClose, message, severity }) {
   return (
     <ModalLayout
       labelledBy={"confirmation-modal"}
       onClose={onClose}
+      className="modal-layout"
     >
       <ModalHeader closeLabel="Cerrar">
-        <h2 id="confirmation-modal" style={{fontWeight: 600}}>Confirmación</h2>
+        <h2
+          id="confirmation-modal"
+          style={{
+            fontWeight: 600,
+            color:
+              severity === "error"
+                ? "red"
+                : severity === "success"
+                ? "green"
+                : "blue",
+          }}
+        >
+          {severity === "success"
+            ? "Confirmación"
+            : severity === "error"
+            ? "Ocurrió un error"
+            : "Información"}
+        </h2>
       </ModalHeader>
       <ModalBody>
         <p>{message}</p>

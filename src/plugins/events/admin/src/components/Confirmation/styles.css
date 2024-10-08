@@ -1,0 +1,12 @@
+@media (max-width: 850px) {
+  .modal-layout {
+    width: 90% !important;
+    min-width: 300px !important;
+    height: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: none !important;
+  }
+}
+
+

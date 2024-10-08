@@ -84,7 +84,45 @@ module.exports = createCoreController(
       }
     },
     async callRoll(ctx) {
-      console.log("############ CALL-ROLL ############");
+      const reservation = await strapi.entityService.findMany(
+        "plugin::events.attendee",
+        {
+          filters: {
+            UID: ctx.request.params.uid,
+            Event: ctx.request.body.event,
+          },
+        }
+      );
+
+      if (reservation?.length > 0) {
+        await strapi.entityService.update(
+          "plugin::events.attendee",
+          reservation[0].id,
+          {
+            data: {
+              Atteded: true,
+            },
+          }
+        );
+
+        ctx.response.status = 200;
+        ctx.response.body = {
+          status: "success",
+          userMessage: "La asistencia ha sido confirmada con éxito.",
+          meta: {
+            timestamp: new Date(),
+          },
+        };
+      } else {
+        ctx.response.status = 400;
+        ctx.response.body = {
+          status: "error",
+          userMessage: "No se encontró la reservación. Por favor, intenta de nuevo.",
+          meta: {
+            timestamp: new Date(),
+          },
+        };
+      }
     }
   })
 );

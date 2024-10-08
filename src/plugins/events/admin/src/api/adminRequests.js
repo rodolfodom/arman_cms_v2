@@ -19,10 +19,11 @@ const callRoll = async (uid, event) => {
     });
     return response.data;
   } catch (error) {
-    return [];
+    throw error;
   }
 };
 
 export default {
   getEvents,
+  callRoll
 };
