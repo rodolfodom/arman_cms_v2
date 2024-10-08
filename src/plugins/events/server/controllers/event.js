@@ -103,7 +103,7 @@ module.exports = createCoreController("plugin::events.event", ({ strapi }) => ({
     ctx.response.body = {
       data: formattedData,
       status: "success",
-      userMessage: "Las reservas se han recuperado correctamente.",
+      userMessage: "Las reservaciones se han recuperado correctamente.",
       meta: {
         timestamp: new Date(),
       },

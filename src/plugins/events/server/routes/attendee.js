@@ -16,10 +16,18 @@ module.exports = {
         method: "POST",
         path: "/reserve",
         handler: "attendee.reserveEvent",
-        config:{
+        config: {
           policies: [],
-        }
-      }
+        },
+      },
+      {
+        method: "GET",
+        path: "/reservation/:event",
+        handler: "attendee.getReservationCode",
+        config: {
+          policies: [],
+        },
+      },
     ],
   },
 };
