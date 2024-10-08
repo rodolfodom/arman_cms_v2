@@ -26,7 +26,25 @@ module.exports = ({ env }) => ({
       actionOptions: {
         upload: {},
         delete: {},
-      }
+      },
+    },
+  },
+  email: {
+    config: {
+      provider: "nodemailer",
+      providerOptions: {
+        host: env("EMAIL_HOST", "smtp.gmail.com"),
+        port: env("EMAIL_PORT", 587),
+        secure: false,
+        auth: {
+          user: env("EMAIL_USER", ""),
+          pass: env("EMAIL_PASS", ""),
+        },
+      },
+      settings: {
+        defaultFrom: env("EMAIL_FROM", ""),
+        defaultReplyTo: env("EMAIL_FROM", ""),
+      },
     },
   },
 });
