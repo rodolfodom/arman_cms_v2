@@ -20,7 +20,7 @@ module.exports = createCoreController("plugin::events.event", ({ strapi }) => ({
         {
           populate: {
             Cover: {
-              fields: ["formats"],
+              fields: ["url"],
             },
             Speakers: true,
           },

@@ -378,11 +378,8 @@ export interface ApiBlogPostBlogPost extends Schema.CollectionType {
     Content: Attribute.Blocks;
     Description: Attribute.Text;
     Slug: Attribute.UID<'api::blog-post.blog-post', 'Title'>;
-    Author: Attribute.Relation<
-      'api::blog-post.blog-post',
-      'oneToOne',
-      'admin::user'
-    >;
+    Author: Attribute.String;
+    Cover: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

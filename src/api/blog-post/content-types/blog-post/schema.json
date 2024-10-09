@@ -26,9 +26,11 @@
       "targetField": "Title"
     },
     "Author": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "admin::user"
+      "type": "string"
+    },
+    "Cover": {
+      "type": "media",
+      "multiple": false
     }
   }
 }
