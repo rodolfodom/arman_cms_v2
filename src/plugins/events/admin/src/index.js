@@ -3,6 +3,7 @@ import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import Initializer from './components/Initializer';
 import PluginIcon from './components/PluginIcon';
+import CertifcatesIcon from './pages/CertificatesPage/icon';
 
 const name = pluginPkg.strapi.name;
 
@@ -17,7 +18,7 @@ export default {
       },
       Component: async () => {
         const component = await import('./pages/App/index.js');
-        
+
         return component;
       },
       permissions: [
@@ -28,6 +29,26 @@ export default {
         // },
       ],
     });
+    app.addMenuLink({
+      to: `/plugins/${pluginId}-certificates`,
+      icon: CertifcatesIcon,
+      intlLabel: {
+        id: `centificates`,
+        defaultMessage: 'Certificates',
+      },
+      Component: async () => {
+        const component = await import('./pages/App/index.js');
+        return component;
+      },
+      permissions: [
+        // Uncomment to set the permissions of the plugin here
+        // {
+        //   action: '', // the action name should be plugin::plugin-name.actionType
+        //   subject: null,
+        // },
+      ],
+    })
+
     app.registerPlugin({
       id: pluginId,
       initializer: Initializer,
